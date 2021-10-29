@@ -1,8 +1,10 @@
 import React from "react";
 import { View } from "react-native";
 
+
 import './styles'
 
-export default function ListAnnouncement() {
+const ListAnnouncement: React.FC = () => {
     return <View />
 }
+export default ListAnnouncement;
