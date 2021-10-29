@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
+import { Platform } from 'react-native';
 import Button from "../../components/Button";
 import Logo from "../../components/Logo";
+import {
+    NavigationParams,
+    NavigationScreenProp,
+    NavigationState,
+  } from 'react-navigation';
+  
+
+import api from "../../services/api";
 
 import {
     Container,
@@ -11,9 +20,38 @@ import {
 
 const BackSvg = require("../../assets/backgroundImg.svg")
 
-const SignIn: React.FC = () => {
+interface SignInProps {
+    navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+  }
+
+interface SignInFormData {
+    email: string;
+    password: string;
+  }
+
+const SignIn: React.FC<SignInProps> = ({navigation}) => {
+
+    
+    
+    const [email,setEmail] = useState<string>();
+    const [password,setPassword] = useState<string>();
+
+    async function handleSubmit(){
+        console.log(email, password)
+
+        // const response = await api.post('sessions', {
+        //     email,
+        //     password,
+        //   });
+
+        navigation.navigate('ListAnnouncement')
+    }
+
     return (
-        <Container>
+        <Container
+        behavior='padding'
+        enabled={Platform.OS === 'ios'}
+        >
 
             <Logo />
             <Form>
@@ -23,13 +61,17 @@ const SignIn: React.FC = () => {
                     keyboardType='email-address'
                     autoCapitalize='none'
                     autoCorrect={false}
+                    value={email}
+                    onChangeText={setEmail}
                 />
                 <Input
                     placeholder='Senha'
                     placeholderTextColor='#969696'
                     secureTextEntry={true}
+                    value={password}
+                    onChangeText={setPassword}
                 />
-                <Button>
+                <Button onPress={handleSubmit}>
                     Login
                 </Button>
             </Form>

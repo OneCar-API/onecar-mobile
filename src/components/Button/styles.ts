@@ -9,11 +9,11 @@ export const ButtonTouchable = styled(TouchableOpacity)`
     margin-top: 16px;
     width: 173px;
     align-self: center;
-    
+    justify-content: center;
 `;
 
 export const ButtonText = styled(Text)`
     color: #ffffff;
-    font-size: 36px;
+    font-size: 26px;
     align-self: center;
 `;

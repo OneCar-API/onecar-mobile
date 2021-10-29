@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import {View, TextInput, ImageBackground} from 'react-native';
+import {KeyboardAvoidingView, View, TextInput, ImageBackground} from 'react-native';
 import BackSvg from "../../assets/backgroundImg.svg"
 
 
-export const Container = styled(View)`
+export const Container = styled(KeyboardAvoidingView)`
     flex: 1;
     background: #e5e5e5;
     justify-content: center;
