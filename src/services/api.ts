@@ -2,7 +2,7 @@ import axios from "axios";
 
 
 const api = axios.create({
-    baseURL: 'http://k3-xjx.fcursino.onecar-mobile.exp.direct:3333'
+    baseURL: 'https://0603-2804-431-c7da-fa3f-b480-f9bb-c71e-7107.ngrok.io'
 });
 
 export default api;

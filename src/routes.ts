@@ -6,10 +6,11 @@ import ShowAnnouncement from './screens/Announcement/ShowAnnouncement';
 
 const Routes = createAppContainer(
     createSwitchNavigator({
-        SignIn,
+        
         ListAnnouncement,
-        ShowAnnouncement
-    })
+        SignIn,                         //para alterar a tela inicial, basta
+        ShowAnnouncement                //alterar a ordem das pages dentro do
+    })                                  //SwitchNavigator
 );
 
 export default Routes;

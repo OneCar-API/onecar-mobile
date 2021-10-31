@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {KeyboardAvoidingView, View, TextInput, ImageBackground} from 'react-native';
+import {KeyboardAvoidingView, View, TextInput, ImageBackground, Text} from 'react-native';
 import BackSvg from "../../assets/backgroundImg.svg"
 
 
@@ -19,6 +19,7 @@ export const Form = styled(View)`
     align-self: stretch;
     padding: 0px 30px;
     margin-top: 30px;
+    text-align: center;
 `;
 
 export const Input = styled(TextInput)`
@@ -27,5 +28,11 @@ export const Input = styled(TextInput)`
     padding: 8px;
     margin: 10px;
     font-size: 18px;
+`;
+
+export const Message = styled(Text)`
+    color: red;
+    font-size: 13px;
+    text-align: center;
 `;
 

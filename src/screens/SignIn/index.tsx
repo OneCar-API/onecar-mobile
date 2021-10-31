@@ -1,20 +1,23 @@
-import React, { useState } from "react";
-import { Platform } from 'react-native';
-import Button from "../../components/Button";
-import Logo from "../../components/Logo";
+import React, { useCallback, useRef, useState } from "react";
+import { ActivityIndicator, Platform } from 'react-native';
+import * as Yup from 'yup';
+import { FormHandles } from "@unform/core";
 import {
     NavigationParams,
     NavigationScreenProp,
     NavigationState,
-  } from 'react-navigation';
-  
+} from 'react-navigation';
 
+import Button from "../../components/Button";
+import Logo from "../../components/Logo";
 import api from "../../services/api";
-
+import { useAuth } from '../../hooks/auth';
+import getValidationErrors from "../../utils/getValidationErrors";
 import {
     Container,
     Form,
     Input,
+    Message,
     Background
 } from './styles';
 
@@ -22,35 +25,70 @@ const BackSvg = require("../../assets/backgroundImg.svg")
 
 interface SignInProps {
     navigation: NavigationScreenProp<NavigationState, NavigationParams>;
-  }
+}
 
 interface SignInFormData {
     email: string;
     password: string;
-  }
+}
 
-const SignIn: React.FC<SignInProps> = ({navigation}) => {
+const SignIn: React.FC<SignInProps> = ({ navigation }) => {
 
-    
-    
-    const [email,setEmail] = useState<string>();
-    const [password,setPassword] = useState<string>();
+    const formRef = useRef<FormHandles>(null);
+    const [credentials, setCredentials] = useState<SignInFormData>({ email: '', password: '' });
+    const [message, setMessage] = useState<string>();
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
-    async function handleSubmit(){
-        console.log(email, password)
+    const { signIn } = useAuth();
 
-        // const response = await api.post('sessions', {
-        //     email,
-        //     password,
-        //   });
+    const handleSubmit = useCallback(async(data: SignInFormData) => {
+        console.log('aqui')
+        setIsSubmitting(true)
+        setMessage('')
+        console.log('aqui2')
 
-        navigation.navigate('ListAnnouncement')
-    }
+        try {
+
+            formRef.current?.setErrors({});
+            const schema = Yup.object().shape({
+                email: Yup.string()
+                    .required('E-mail obrigatório')
+                    .email('Digite um e-mail válido'),
+                password: Yup.string().required('Senha obrigatória'),
+            });
+
+            await schema.validate(data, {
+                abortEarly: false,
+            });
+
+            console.log('aqui4')
+            console.log(data)
+            await signIn({
+                email: data.email,
+                password: data.password,
+              });
+            setIsSubmitting(false)
+            navigation.navigate('ListAnnouncement')
+
+        } catch (error) {
+            if (error instanceof Yup.ValidationError) {
+                const errors = getValidationErrors(error);
+                console.log(error)
+                formRef.current?.setErrors(errors);
+            }
+            console.log(error)
+            console.log('aqui3')
+
+            setMessage('Ocorreu um erro ao fazer login, cheque as credenciais.')
+            setIsSubmitting(false)
+        }
+    },[signIn],)
+
 
     return (
         <Container
-        behavior='padding'
-        enabled={Platform.OS === 'ios'}
+            behavior='padding'
+            enabled={Platform.OS === 'ios'}
         >
 
             <Logo />
@@ -61,19 +99,25 @@ const SignIn: React.FC<SignInProps> = ({navigation}) => {
                     keyboardType='email-address'
                     autoCapitalize='none'
                     autoCorrect={false}
-                    value={email}
-                    onChangeText={setEmail}
+                    value={credentials?.email}
+                    onChangeText={text => setCredentials({ ...credentials, ['email']: text })}
                 />
                 <Input
                     placeholder='Senha'
                     placeholderTextColor='#969696'
                     secureTextEntry={true}
-                    value={password}
-                    onChangeText={setPassword}
+                    value={credentials?.password}
+                    onChangeText={text => setCredentials({ ...credentials, ['password']: text })}
                 />
-                <Button onPress={handleSubmit}>
+
+                <Message>{message}</Message>
+
+                {!isSubmitting && <Button disabled={false} onPress={() => handleSubmit(credentials)}>
                     Login
-                </Button>
+                </Button>}
+                {isSubmitting && <Button disabled={true}>
+                    <ActivityIndicator size='large' color='#fff' />
+                </Button>}
             </Form>
 
         </Container>
