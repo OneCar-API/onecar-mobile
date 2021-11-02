@@ -63,7 +63,7 @@ const ListAnnouncement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
 
     useEffect(() => {
         loadCars()
-    })
+    },[])
 
     async function loadCars() {
         const response = await api.get('/ads');
@@ -73,7 +73,7 @@ const ListAnnouncement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
     }
 
     function viewAnnouncement(id:string){
-        navigation.navigate('ShowAnnouncement', { id })
+        navigation.navigate('ShowAnnouncement', { 'id':id })
     }
 
     return (
@@ -121,7 +121,6 @@ const ListAnnouncement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
 
             </ScrollView>
 
-            <Text>teste teste teste</Text>
         </Container>
     )
 }
