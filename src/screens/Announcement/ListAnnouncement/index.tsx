@@ -1,10 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, ScrollView } from "react-native";
 import api from "../../../services/api";
 
-import { 
+import {
     Container,
-    SearchContainer, 
+    SearchContainer,
     Input,
     SearchButton,
     Header,
@@ -14,16 +14,52 @@ import {
     Informations,
     Name,
     Year,
-    Price
+    Price,
+    Cars
 } from './styles';
 
 
 import { Feather } from '@expo/vector-icons'
+import { NavigationProvider } from "react-navigation";
+import {
+    NavigationParams,
+    NavigationScreenProp,
+    NavigationState,
+} from 'react-navigation';
 
+interface ListAnnouncementProps {
+    navigation: NavigationScreenProp<NavigationState, NavigationParams>;
+}
 
-import './styles'
+interface IAds {
+    id: string;
+    price: number;
+    created_at: string;
+    car: {
+        id: string;
+        manufacturer: string;
+        brand: string;
+        model: string;
+        year_manufacture: string;
+        year_model: string;
+        fuel: string;
+        gearbox_type: string;
+        km: string;
+        color: string;
+        carImages: [
+            {
+                id: string,
+                image: string,
+                car_id: string,
+                image_url: string,
+            }
+        ];
+    }
+}
 
-const ListAnnouncement: React.FC = () => {
+const ListAnnouncement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
+
+    const [announcements, setAnnouncements] = useState<IAds[]>([]);
 
     useEffect(() => {
         loadCars()
@@ -32,10 +68,15 @@ const ListAnnouncement: React.FC = () => {
     async function loadCars() {
         const response = await api.get('/ads');
         console.log(response.data)
-    
+
+        setAnnouncements(response.data.results)
     }
 
-    return(
+    function viewAnnouncement(id:string){
+        navigation.navigate('ShowAnnouncement', { id })
+    }
+
+    return (
         <Container>
             <Header>
                 <SearchContainer>
@@ -55,25 +96,33 @@ const ListAnnouncement: React.FC = () => {
 
 
             <ScrollView>
-                <Announcement activeOpacity={0.9} onPress={ () => alert("TESTE") }>
-                    <Photo
-                        resizeMethod="resize"
-                        source={{ uri: `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZMlO2PxSWuyDUKRnzbi-qpoBDzdK4MRZ3Kw&usqp=CAU` }}
-                    />
+                <Cars>
+                    {announcements?.map(announcement => (
+                        <Announcement
+                            key={announcement.id}
+                            activeOpacity={0.9}
+                            onPress={() => viewAnnouncement(announcement.id)}
+                        >
+                            <Photo
+                                resizeMethod="resize"
+                                source={{ uri: announcement.car.carImages[0]?.image }}
+                            />
 
-                    <Informations>
-                        <Name>Chevrolet Corsa</Name>
 
-                        <Year>2012</Year>
-                        
-                        <Price>R$20000,00</Price>
-                    </Informations>
-                </Announcement>
-                
+                            <Name>{`${announcement.car.brand} ${announcement.car.model}`}</Name>
+
+                            <Year>{announcement.car.year_manufacture}</Year>
+
+                            <Price>R$ {announcement.price},00</Price>
+
+                        </Announcement>
+                    ))}
+                </Cars>
+
             </ScrollView>
 
             <Text>teste teste teste</Text>
         </Container>
-    ) 
+    )
 }
 export default ListAnnouncement;

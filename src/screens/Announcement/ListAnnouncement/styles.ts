@@ -39,7 +39,7 @@ export const SearchButton = styled(TouchableOpacity)`
     justify-content: center;
     position: absolute;
     top: 5px;
-    right: 90px
+    right: 90px;
 `;
 
 export const UserButton = styled(TouchableOpacity)`
@@ -57,19 +57,20 @@ export const Announcement = styled(TouchableOpacity)`
     margin-left: 14px;
     background: #e5e5e5;
     border-radius: 5px;
-    height: 280px;
-    width: 180px;
+    height: 250px;
+    width: 44%;
 `;
 
 export const Photo = styled(Image)`
     height: 140px;
-    width: 180px;
+    width: 100%;
     border-radius: 5px;
 `;
 
 export const Informations = styled(Text)`
     margin-left: 16px;
     margin: 5px 10px;
+    display: block;
 `;
 
 export const Name = styled(Text)`
@@ -86,4 +87,10 @@ export const Price = styled(Text)`
     font-size: 18px;
     color: #383838;
     margin-top: 20px;
+`;
+
+export const Cars = styled(View)`
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: row;
 `;
