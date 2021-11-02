@@ -9,7 +9,7 @@ import Motor from '../../../assets/motor.svg';
 import Direction from '../../../assets/direction.svg';
 import Fuel from '../../../assets/fuel.svg';
 import Door from '../../../assets/door.svg';
-import {MaterialCommunityIcons} from '@expo/vector-icons';
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
 
 import { ButtonBack, Container, Informations, Name, Photo, Price, Description, DescBox, CarContainer, CarGrid, DescGrid, Label, ChatLink, ChatLinkText } from './styles'
@@ -91,7 +91,15 @@ const ShowAnnouncement: React.FC<ShowAnnouncementProps> = ({ navigation }) => {
 
                 <Informations>
 
-                    <Name>{`${announcement?.car.brand || ''} ${announcement?.car.model || ''}`}</Name>
+                    <Name>
+                        <Ionicons
+                            name="arrow-back"
+                            size={24}
+                            color="black"
+                            onPress={() => navigation.navigate('ListAnnouncement')}
+                        />
+                        {` ${announcement?.car.brand || ''} ${announcement?.car.model || ''}`}
+                    </Name>
                     <Price>R$ {announcement?.price},00</Price>
                     <DescBox>
                         <Description>{announcement?.description || 'Sem descrição...'}</Description>
@@ -133,14 +141,12 @@ const ShowAnnouncement: React.FC<ShowAnnouncementProps> = ({ navigation }) => {
 
                     <ChatLink>
                         <ChatLinkText>
-                        <MaterialCommunityIcons name="message-text-outline" size={24} color="white" />
+                            <MaterialCommunityIcons name="message-text-outline" size={24} color="white" />
                             Falar com o vendedor
                         </ChatLinkText>
                     </ChatLink>
 
-                    <ButtonBack onPress={() => navigation.navigate('ListAnnouncement')}>
-                        <Text>Back</Text>
-                    </ButtonBack>
+
                 </Informations>
 
             </ScrollView>
