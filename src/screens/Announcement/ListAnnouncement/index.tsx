@@ -60,20 +60,32 @@ interface IAds {
 const ListAnnouncement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
 
     const [announcements, setAnnouncements] = useState<IAds[]>([]);
+    const [search, setSearch] = useState<string>('')
 
     useEffect(() => {
         loadCars()
-    })
+    }, [])
 
     async function loadCars() {
+        setSearch('')
         const response = await api.get('/ads');
         console.log(response.data)
 
         setAnnouncements(response.data.results)
+
     }
 
-    function viewAnnouncement(id:string){
-        navigation.navigate('ShowAnnouncement', { id })
+    function viewAnnouncement(id: string) {
+        navigation.navigate('ShowAnnouncement', { 'id': id })
+    }
+
+    async function searchCars(search: string) {
+
+        setSearch(search)
+        const response = await api.get(`/ads?car=${search}`)
+
+        setAnnouncements(response.data.results)
+
     }
 
     return (
@@ -81,12 +93,25 @@ const ListAnnouncement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
             <Header>
                 <SearchContainer>
                     <Input
+                        value={search}
                         placeholder="Pesquisar:"
                         placeholderTextColor="#ddd"
+                        keyboardType='web-search'
+                        onChangeText={text => searchCars(text)}
                     />
-                    <SearchButton>
-                        <Feather name="search" size={30} color="#5E9DBC" />
-                    </SearchButton>
+
+
+                    {search !== '' ?
+                        <SearchButton onPress={() => loadCars()}>
+                            <Feather name="x-circle" size={20} color="#5E9DBC" />
+                        </SearchButton>
+                        :
+                        <SearchButton onPress={() => searchCars(search)}>
+                            <Feather name="search" size={30} color="#5E9DBC" />
+                        </SearchButton>
+                    }
+
+
 
                     <UserButton>
                         <Feather name="user" size={30} color="#5E9DBC" />
