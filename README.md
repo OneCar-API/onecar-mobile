@@ -53,3 +53,10 @@ expo start
 ```
 
 - Com isso o projeto irá executar, abrindo uma aba no navegador e mostrando um QR Code. No seu celular, escaneie esse QR Code e o projeto irá ser executado no seu celular.
+---
+
+## Aplicação funcionando
+O GIF abaixo, mostra a aplicação em funcionamento, com as funcionalidades de listagem de anúncios, exibição de um anúncio selecionado e também busca por um anúncio.
+
+![app_mobile](https://user-images.githubusercontent.com/56441318/140787736-c719205b-f575-4048-bfa7-8a17714123e7.gif)
+
