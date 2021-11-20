@@ -151,3 +151,13 @@ export const OptionsText = styled(Text)`
     font-size: 16px;
     align-self: center;
 `;
+
+export const DetailsContainer = styled(View)`
+    flex-direction: row;
+    align-items: center;
+`;
+
+export const TrashContainer = styled(View)`
+    margin-right: 10px;
+    margin-left: auto;
+`;
