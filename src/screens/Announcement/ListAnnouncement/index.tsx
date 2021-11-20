@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, ScrollView } from "react-native";
+import { Text, ScrollView, Modal, Linking } from "react-native";
 import api from "../../../services/api";
 
 import {
@@ -15,7 +15,12 @@ import {
     Name,
     Year,
     Price,
-    Cars
+    Cars,
+    ModalBlock,
+    ModalContent,
+    CloseButton,
+    CloseText,
+    Tip
 } from './styles';
 
 
@@ -26,6 +31,8 @@ import {
     NavigationScreenProp,
     NavigationState,
 } from 'react-navigation';
+import { useAuth } from "../../../hooks/auth";
+import Button from "../../../components/Button";
 
 interface ListAnnouncementProps {
     navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -61,6 +68,10 @@ const ListAnnouncement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
 
     const [announcements, setAnnouncements] = useState<IAds[]>([]);
     const [search, setSearch] = useState<string>('')
+    const [modalActive, setModalActive] = useState(false);
+
+    const { user } = useAuth()
+
 
     useEffect(() => {
         loadCars()
@@ -113,7 +124,7 @@ const ListAnnouncement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
 
 
 
-                    <UserButton>
+                    <UserButton onPress={() => setModalActive(true)}>
                         <Feather name="user" size={30} color="#5E9DBC" />
                     </UserButton>
                 </SearchContainer>
@@ -145,8 +156,30 @@ const ListAnnouncement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
                 </Cars>
 
             </ScrollView>
-
+            <Modal transparent={true} onRequestClose={() => setModalActive(false)} visible={modalActive} >
+                <ModalBlock>
+                    <ModalContent>
+                        {
+                    user?
+                    'logout'
+                    :
+                    <>
+                    <Tip>Acesse sua conta</Tip>
+                    <Button onPress={()=> navigation.navigate('SignIn')} >Entrar</Button>
+                    </>
+                    
+                }
+                <CloseButton onPress={()=> setModalActive(false)}>
+                    <CloseText>
+                        Fechar
+                    </CloseText>
+                </CloseButton>
+                    </ModalContent>
+                </ModalBlock>
+            </Modal>
+                
         </Container>
     )
+    
 }
 export default ListAnnouncement;

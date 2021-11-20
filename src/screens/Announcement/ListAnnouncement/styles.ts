@@ -1,4 +1,4 @@
-import { View, TextInput, TouchableOpacity, Image, Text } from 'react-native';
+import { View, TextInput, TouchableOpacity, Image, Text, Modal } from 'react-native';
 import styled from 'styled-components';
 
 export const Container = styled(View)`
@@ -93,4 +93,43 @@ export const Cars = styled(View)`
     flex-wrap: wrap;
     display: flex;
     flex-direction: row;
+`;
+
+export const UserModal = styled(Modal)`
+    height: 100px;
+`;
+
+export const ModalBlock = styled(View)`
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.5);
+`;
+
+export const ModalContent = styled(View)`
+    width: 300px;
+    height: 200px;
+    background: white;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const CloseButton = styled(TouchableOpacity)`
+    width: 80px;
+    height: 40px;
+    background: white;
+    color: red;
+    align-items: center;
+    margin-top: 40px;
+`;
+
+export const CloseText = styled(Text)`
+    color: red;
+    font-size: 15px;
+`;
+
+export const Tip = styled(Text)`
+    font-size: 20px;
 `;
