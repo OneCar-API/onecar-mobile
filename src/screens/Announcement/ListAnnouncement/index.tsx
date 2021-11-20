@@ -33,6 +33,7 @@ import {
 } from 'react-navigation';
 import { useAuth } from "../../../hooks/auth";
 import Button from "../../../components/Button";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface ListAnnouncementProps {
     navigation: NavigationScreenProp<NavigationState, NavigationParams>;
@@ -69,12 +70,17 @@ const ListAnnouncement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
     const [announcements, setAnnouncements] = useState<IAds[]>([]);
     const [search, setSearch] = useState<string>('')
     const [modalActive, setModalActive] = useState(false);
-
-    const { user } = useAuth()
-
+    const [name,setName] = useState('')
+    const { user, signOut } = useAuth()
 
     useEffect(() => {
         loadCars()
+        
+        if(user){
+            const userString = JSON.stringify(user)
+            const currentUser = JSON.parse(userString)
+            setName(currentUser?.name)
+        }
     }, [])
 
     async function loadCars() {
@@ -160,26 +166,33 @@ const ListAnnouncement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
                 <ModalBlock>
                     <ModalContent>
                         {
-                    user?
-                    'logout'
-                    :
-                    <>
-                    <Tip>Acesse sua conta</Tip>
-                    <Button onPress={()=> navigation.navigate('SignIn')} >Entrar</Button>
-                    </>
-                    
-                }
-                <CloseButton onPress={()=> setModalActive(false)}>
-                    <CloseText>
-                        Fechar
-                    </CloseText>
-                </CloseButton>
+                            user ?
+                                <>
+                                <Tip>Bem vindo(a), {name}</Tip>
+                                    <Button onPress={() => {
+                                        signOut()
+                                        navigation.navigate('SignIn')     
+                                        }} >Sair</Button>
+                                </>
+
+                                :
+                                <>
+                                    <Tip>Acesse sua conta</Tip>
+                                    <Button onPress={() => navigation.navigate('SignIn')} >Entrar</Button>
+                                </>
+
+                        }
+                        <CloseButton onPress={() => setModalActive(false)}>
+                            <CloseText>
+                                Fechar
+                            </CloseText>
+                        </CloseButton>
                     </ModalContent>
                 </ModalBlock>
             </Modal>
-                
+
         </Container>
     )
-    
+
 }
 export default ListAnnouncement;

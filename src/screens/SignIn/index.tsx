@@ -18,7 +18,9 @@ import {
     Form,
     Input,
     Message,
-    Background
+    Background,
+    CloseButton,
+    CloseText
 } from './styles';
 
 const BackSvg = require("../../assets/backgroundImg.svg")
@@ -119,7 +121,11 @@ const SignIn: React.FC<SignInProps> = ({ navigation }) => {
                     <ActivityIndicator size='large' color='#fff' />
                 </Button>}
             </Form>
-
+            <CloseButton onPress={() => navigation.navigate('ListAnnouncement')}>
+                <CloseText>
+                    Voltar
+                </CloseText>
+            </CloseButton>
         </Container>
     )
 }
