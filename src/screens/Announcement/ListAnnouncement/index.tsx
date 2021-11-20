@@ -131,7 +131,7 @@ const ListAnnouncement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
 
 
                     <UserButton onPress={() => setModalActive(true)}>
-                        <Feather name="user" size={30} color="#5E9DBC" />
+                        <Feather name={user? 'user-check': 'user'} size={30} color="#5E9DBC" />
                     </UserButton>
                 </SearchContainer>
             </Header>

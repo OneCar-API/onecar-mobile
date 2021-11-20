@@ -123,7 +123,7 @@ const SignIn: React.FC<SignInProps> = ({ navigation }) => {
             </Form>
             <CloseButton onPress={() => navigation.navigate('ListAnnouncement')}>
                 <CloseText>
-                    Voltar
+                    Home
                 </CloseText>
             </CloseButton>
         </Container>
