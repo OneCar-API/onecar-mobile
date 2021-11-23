@@ -78,20 +78,20 @@ const ShowAnnouncement: React.FC<ShowAnnouncementProps> = ({ navigation }) => {
         setAnnouncement(response.data)
     }
 
-    async function openWhatsApp(phone:string) {
-        let msg = 'Olá'
+    async function openWhatsApp(phone: string) {
+
         let mobile = phone
-        if(mobile) {
-            if(msg) {
-                let url = "whatsapp://send?phone=55"+mobile
-                Linking.openURL(url).then(() => {
-                    console.log('WhatsApp acessado')
-                })
+        if (mobile) {
+
+            let url = "whatsapp://send?phone=55" + mobile
+            Linking.openURL(url).then(() => {
+                console.log('WhatsApp acessado')
+            })
                 .catch(() => {
                     alert("Tenha certeza de que o WhatsApp está instalado em seu dispositivo")
                 })
-            }
         }
+
     }
 
 
@@ -124,7 +124,6 @@ const ShowAnnouncement: React.FC<ShowAnnouncementProps> = ({ navigation }) => {
                         <CarGrid>
                             <Calendar width={30} />
                             <Color width={30} />
-                            <Motor width={30} />
                             <Fuel width={30} />
                         </CarGrid>
                         <DescGrid>
@@ -132,15 +131,12 @@ const ShowAnnouncement: React.FC<ShowAnnouncementProps> = ({ navigation }) => {
                             <Text>{announcement?.car.year_manufacture || ''}</Text>
                             <Label>Cor:</Label>
                             <Text>{announcement?.car.color || ''}</Text>
-                            <Label>Motor:</Label>
-                            <Text>{''}</Text>
                             <Label>Combustível:</Label>
                             <Text>{announcement?.car.fuel || ''}</Text>
                         </DescGrid>
                         <CarGrid>
                             <Km width={30} />
                             <GearboxType width={30} />
-                            <Direction width={30} />
                             <Door width={30} />
                         </CarGrid>
                         <DescGrid>
@@ -148,29 +144,23 @@ const ShowAnnouncement: React.FC<ShowAnnouncementProps> = ({ navigation }) => {
                             <Text>{announcement?.car.km || ''}</Text>
                             <Label>Câmbio:</Label>
                             <Text>{announcement?.car.gearbox_type || ''}</Text>
-                            <Label>Direção:</Label>
-                            <Text>{''}</Text>
                             <Label>Portas:</Label>
-                            <Text>{''}</Text>
+                            <Text>4</Text>
                         </DescGrid>
                     </CarContainer>
-
+                    {announcement?.user.phone?
                     <ChatLink onPress={() => openWhatsApp(announcement?.user.phone || '')}>
                         <ChatLinkText>
                             <MaterialCommunityIcons name='whatsapp' size={24} color="white" />
                             Ir para WhatsApp
                         </ChatLinkText>
                     </ChatLink>
-
-
+                    :
+                    null
+                }
                 </Informations>
-
             </ScrollView>
         </Container>
-
-
-
-
     )
 }
 export default ShowAnnouncement;
