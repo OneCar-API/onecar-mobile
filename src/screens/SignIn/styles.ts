@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {KeyboardAvoidingView, View, TextInput, ImageBackground, Text} from 'react-native';
+import { KeyboardAvoidingView, View, TextInput, ImageBackground, Text, TouchableOpacity } from 'react-native';
 import BackSvg from "../../assets/backgroundImg.svg"
 
 
@@ -36,3 +36,15 @@ export const Message = styled(Text)`
     text-align: center;
 `;
 
+export const CloseButton = styled(TouchableOpacity)`
+    width: 80px;
+    height: 40px;
+    background: rgba(0,0,0,0.0);
+    align-items: center;
+    margin-top: 40px;
+`;
+
+export const CloseText = styled(Text)`
+    color: #5e9dbc;
+    font-size: 15px;
+`;
