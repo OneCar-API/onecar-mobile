@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, ScrollView } from "react-native";
+import { View, Text, ScrollView, Linking } from "react-native";
 import api from "../../../services/api";
 import Calendar from '../../../assets/year.svg';
 import Km from '../../../assets/km.svg';
@@ -78,6 +78,22 @@ const ShowAnnouncement: React.FC<ShowAnnouncementProps> = ({ navigation }) => {
         setAnnouncement(response.data)
     }
 
+    async function openWhatsApp(phone:string) {
+        let msg = 'Olá'
+        let mobile = phone
+        if(mobile) {
+            if(msg) {
+                let url = "whatsapp://send?phone=55"+mobile
+                Linking.openURL(url).then(() => {
+                    console.log('WhatsApp acessado')
+                })
+                .catch(() => {
+                    alert("Tenha certeza de que o WhatsApp está instalado em seu dispositivo")
+                })
+            }
+        }
+    }
+
 
     return (
 
@@ -139,10 +155,10 @@ const ShowAnnouncement: React.FC<ShowAnnouncementProps> = ({ navigation }) => {
                         </DescGrid>
                     </CarContainer>
 
-                    <ChatLink>
+                    <ChatLink onPress={() => openWhatsApp(announcement?.user.phone || '')}>
                         <ChatLinkText>
-                            <MaterialCommunityIcons name="message-text-outline" size={24} color="white" />
-                            Falar com o vendedor
+                            <MaterialCommunityIcons name='whatsapp' size={24} color="white" />
+                            Ir para WhatsApp
                         </ChatLinkText>
                     </ChatLink>
 

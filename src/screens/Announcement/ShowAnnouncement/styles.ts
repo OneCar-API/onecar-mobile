@@ -94,8 +94,8 @@ export const Label = styled(Text)`
 `;
 
 export const ChatLink = styled(TouchableOpacity)`
-    background: #5e9dbc;
-    border-radius: 12px;
+    background: #25d366;
+    border-radius: 30px;
     padding: 5px 16px;
     margin-top: 50px;
     width: auto;
