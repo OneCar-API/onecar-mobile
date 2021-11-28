@@ -174,6 +174,11 @@ const AdsManagement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
                                 <>
                                     <Tip>Bem vindo(a), {name}</Tip>
                                     <OptionsButton onPress={() => {
+                                        navigation.navigate('UserProfile')
+                                    }} >
+                                       <OptionsText>Perfil</OptionsText> 
+                                    </OptionsButton>
+                                    <OptionsButton onPress={() => {
                                         signOut()
                                         navigation.navigate('SignIn')
                                     }} >

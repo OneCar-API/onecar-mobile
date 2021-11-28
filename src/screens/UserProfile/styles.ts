@@ -1,10 +1,16 @@
-import { View, TextInput, TouchableOpacity, Image, Text, Modal } from 'react-native';
+import { View, Text, TouchableOpacity, Modal } from 'react-native';
 import styled from 'styled-components';
 
 export const Container = styled(View)`
-    background-color: #F9F9F9;
-    flex: 1;
-    padding: 4px 0;
+  display: flex;
+  align-items: center;
+  
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+ 
+
 `;
 
 export const Header = styled(View)`
@@ -21,28 +27,6 @@ export const SearchContainer = styled(View)`
     margin-bottom: 8px;
 `;
 
-export const Input = styled(TextInput)`
-    background-color: rgba(255,255,255, 0.4);
-    width: 80%;
-    height: 50px;
-    border-radius: 50px;
-    border: 1px #b5b5b5;
-    padding: 8px 15px;
-    font-size: 18px;
-    color: #383838;
-    margin-top: 14px;
-`;
-
-export const SearchButton = styled(TouchableOpacity)`
-    width: 15%;
-    height: 50px;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 5px;
-    right: 90px;
-`;
-
 export const UserButton = styled(TouchableOpacity)`
     width: 15%;
     height: 50px;
@@ -53,48 +37,42 @@ export const UserButton = styled(TouchableOpacity)`
     justify-content: center;
 `;
 
-export const Announcement = styled(TouchableOpacity)`
-    margin-top: 20px;
-    margin-left: 14px;
-    background: transparent;
-    border-radius: 7px;
-    border: 1px #b5b5b5;
-    height: auto;
-    width: 44%;
-`;
-
-export const Photo = styled(Image)`
-    height: 140px;
-    width: 100%;
-    border-radius: 5px;
-`;
-
-export const Informations = styled(Text)`
-    margin-left: 16px;
-    margin: 5px 10px;
-    display: block;
-`;
-
-export const Name = styled(Text)`
+export const Tip = styled(Text)`
     font-size: 20px;
-    color: #383838;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
 `;
 
-export const Year = styled(Text)`
-    font-size: 12px;
-    color: #808080;
+export const Circle = styled(View)`
+    border: 7px #5E9DBC;
+    border-radius: 75px;
+    height: 150px;
+    width: 150px;
+    align-items: center;
+    justify-content: center;
+
 `;
 
-export const Price = styled(Text)`
-    font-size: 18px;
-    color: #383838;
-    margin-top: 20px;
+export const Info = styled(Text)`
+    padding-top: 20px;
+    font-size: 20px;
 `;
 
-export const Cars = styled(View)`
-    flex-wrap: wrap;
-    display: flex;
-    flex-direction: row;
+export const DeleteButton = styled(TouchableOpacity)`
+    background: #fff;
+  border-radius: 25px;
+  width: 128px;
+  height: 40px;
+  border: 1px solid #787878;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+`;
+
+export const DeleteLabel = styled(Text)`
+    color: #787878;
+    font-size: 20px;
 `;
 
 export const UserModal = styled(Modal)`
@@ -116,6 +94,28 @@ export const ModalContent = styled(View)`
     border-radius: 20px;
     justify-content: center;
     align-items: center;
+    padding: 5px;
+`;
+
+export const ConfirmButton = styled(TouchableOpacity)`
+    background: #fff;
+  border-radius: 25px;
+  width: 128px;
+  height: 40px;
+  border: 1px solid red;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+`;
+
+export const ConfirmLabel = styled(Text)`
+    color: red;
+    font-size: 20px;
+`;
+
+export const ButtonsContainer = styled(View)`
+    display: flex;
+    flex-direction: row;
 `;
 
 export const CloseButton = styled(TouchableOpacity)`
@@ -130,12 +130,6 @@ export const CloseButton = styled(TouchableOpacity)`
 export const CloseText = styled(Text)`
     color: red;
     font-size: 15px;
-`;
-
-export const Tip = styled(Text)`
-    font-size: 20px;
-    margin-top: 10px;
-    margin-bottom: 10px;
 `;
 
 export const OptionsButton = styled(TouchableOpacity)`

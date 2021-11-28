@@ -9,7 +9,7 @@ export const Container = styled(View)`
 
 export const Header = styled(View)`
   padding: 15px;
-  background: #e5e5e5;
+  background: transparent;
 `;
 
 export const SearchContainer = styled(View)`
@@ -139,17 +139,18 @@ export const Tip = styled(Text)`
 
 export const OptionsButton = styled(TouchableOpacity)`
     background: #5e9dbc;
-    border-radius: 6px;
+    border-radius: 25px;
     padding: 5px 16px;
     margin-top: 6px;
     width: 153px;
+    height: 40px;
     align-self: center;
     justify-content: center;
 `;
 
 export const OptionsText = styled(Text)`
     color: #ffffff;
-    font-size: 16px;
+    font-size: 17px;
     align-self: center;
 `;
 

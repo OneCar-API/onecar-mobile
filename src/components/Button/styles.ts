@@ -4,7 +4,7 @@ import { TouchableOpacity, Text } from 'react-native';
 
 export const ButtonTouchable = styled(TouchableOpacity)`
     background: #5e9dbc;
-    border-radius: 12px;
+    border-radius: 25px;
     padding: 5px 16px;
     margin-top: 16px;
     width: 173px;

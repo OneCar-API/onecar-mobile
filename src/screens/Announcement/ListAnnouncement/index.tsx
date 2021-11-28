@@ -174,6 +174,9 @@ const ListAnnouncement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
                                     <OptionsButton onPress={() => navigation.navigate('AdsManagement')} >
                                        <OptionsText>Meus Anúncios</OptionsText> 
                                     </OptionsButton>
+                                    <OptionsButton onPress={() => navigation.navigate('UserProfile')} >
+                                       <OptionsText>Perfil</OptionsText> 
+                                    </OptionsButton>
                                     <OptionsButton onPress={() => {
                                         signOut()
                                         navigation.navigate('SignIn')

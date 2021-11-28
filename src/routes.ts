@@ -4,6 +4,7 @@ import SignIn from './screens/SignIn';
 import ListAnnouncement from './screens/Announcement/ListAnnouncement';
 import ShowAnnouncement from './screens/Announcement/ShowAnnouncement';
 import AdsManagement from './screens/AdsManagement';
+import UserProfile from './screens/UserProfile';
 
 const Routes = createAppContainer(
     createSwitchNavigator({
@@ -11,7 +12,8 @@ const Routes = createAppContainer(
         ListAnnouncement,
         SignIn,                         //para alterar a tela inicial, basta
         ShowAnnouncement,
-        AdsManagement                //alterar a ordem das pages dentro do
+        AdsManagement,
+        UserProfile              //alterar a ordem das pages dentro do
     })                                  //SwitchNavigator
 );
 
