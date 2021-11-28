@@ -57,7 +57,7 @@ export const Announcement = styled(TouchableOpacity)`
     margin-left: 14px;
     background: #e5e5e5;
     border-radius: 5px;
-    height: 250px;
+    height: auto;
     width: 44%;
 `;
 
@@ -109,7 +109,7 @@ export const ModalBlock = styled(View)`
 
 export const ModalContent = styled(View)`
     width: 300px;
-    height: 200px;
+    height: auto;
     background: white;
     border-radius: 20px;
     justify-content: center;
