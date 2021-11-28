@@ -143,7 +143,7 @@ export const OptionsButton = styled(TouchableOpacity)`
     border-radius: 25px;
     padding: 5px 16px;
     margin-top: 6px;
-    width: 153px;
+    width: 200px;
     height: 40px;
     align-self: center;
     justify-content: center;
