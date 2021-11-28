@@ -55,7 +55,8 @@ export const UserButton = styled(TouchableOpacity)`
 export const Announcement = styled(TouchableOpacity)`
     margin-top: 20px;
     margin-left: 14px;
-    background: #e5e5e5;
+    background: transparent;
+    border: 1px #b5b5b5;
     border-radius: 5px;
     height: auto;
     width: 44%;

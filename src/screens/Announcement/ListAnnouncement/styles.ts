@@ -9,7 +9,7 @@ export const Container = styled(View)`
 
 export const Header = styled(View)`
   padding: 15px;
-  background: #e5e5e5;
+  background: transparent;
 `;
 
 export const SearchContainer = styled(View)`
@@ -26,6 +26,7 @@ export const Input = styled(TextInput)`
     width: 80%;
     height: 50px;
     border-radius: 50px;
+    border: 1px #b5b5b5;
     padding: 8px 15px;
     font-size: 18px;
     color: #383838;
@@ -55,8 +56,9 @@ export const UserButton = styled(TouchableOpacity)`
 export const Announcement = styled(TouchableOpacity)`
     margin-top: 20px;
     margin-left: 14px;
-    background: #e5e5e5;
-    border-radius: 5px;
+    background: transparent;
+    border-radius: 7px;
+    border: 1px #b5b5b5;
     height: auto;
     width: 44%;
 `;

@@ -5,7 +5,7 @@ import BackSvg from "../../assets/backgroundImg.svg"
 
 export const Container = styled(KeyboardAvoidingView)`
     flex: 1;
-    background: #e5e5e5;
+    background: #fff;
     justify-content: center;
     align-items: center;
 `;
@@ -25,6 +25,7 @@ export const Form = styled(View)`
 export const Input = styled(TextInput)`
     background: white;
     border-radius: 8px;
+    border: 1px #b5b5b5;
     padding: 8px;
     margin: 10px;
     font-size: 18px;

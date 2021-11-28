@@ -140,7 +140,7 @@ const AdsManagement: React.FC<ListAnnouncementProps> = ({ navigation }) => {
                         >
                             <Photo
                                 resizeMethod="resize"
-                                source={{ uri: announcement.car.carImages[0]?.image }}
+                                source={{ uri: announcement.car.carImages[0]?.image || 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZMlO2PxSWuyDUKRnzbi-qpoBDzdK4MRZ3Kw&usqp=CAU' }}
                             />
 
 
