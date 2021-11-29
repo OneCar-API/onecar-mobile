@@ -56,7 +56,15 @@ expo start
 
 
 ## Aplicação funcionando
-O GIF abaixo, mostra a aplicação em funcionamento, com as funcionalidades de listagem de anúncios, exibição de um anúncio selecionado e também busca por um anúncio.
+O GIF abaixo, mostra a aplicação em funcionamento.
 
-![app_mobile](https://user-images.githubusercontent.com/56441318/140787736-c719205b-f575-4048-bfa7-8a17714123e7.gif)
+![Screen_Recording_20211128-171446_Expo-Go](https://user-images.githubusercontent.com/56441318/143797872-c68ec189-281a-42e8-be0a-55eec925331b.gif)
 
+### Funcionalidades da aplicação mobile
+- Busca de anúncios por nome
+- Visualização de um único anúncio
+- Contato com o vendedor via WhatsApp
+- Login e Logout
+- Visualização de anúncios e quantas visualizações ele teve
+- Exclusão de anúncios
+- Exclusão de conta
